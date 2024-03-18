@@ -272,14 +272,12 @@
             color: white;
             transition: background-color 0.5s ease;
             border: none;
-            font-size: 10px;
             /* Rimuovi il bordo */
         }
 
         .navbar-secondary.scrolled .btn-primary {
             background-color: #a6ff00;
             color: black;
-            
         }
 
         /* Stili per la stringa nella barra di navigazione principale e nella nuova barra di navigazione */
@@ -289,7 +287,6 @@
             /* Colore iniziale del testo */
             transition: color 0.5s ease;
             /* Aggiunto effetto di transizione */
-            font-size: 20px;
         }
 
         /* Cambiamento del colore del testo quando avviene lo scrolling */
@@ -303,14 +300,14 @@
         /* Stili per la barra di navigazione principale e la nuova barra di navigazione */
         .navbar,
         .navbar-secondary {
-            transition: height 0.3s ease, margin-top 0.3s ease;
+            transition: height 0.5s ease, margin-top 0.5s ease;
             /* Aggiunta transizione per l'altezza e margin-top */
         }
 
         /* Altezza iniziale della barra di navigazione principale e della nuova barra di navigazione */
         .navbar,
         .navbar-secondary {
-            height: 40px;
+            height: 70px;
             margin-top: 0px;
             /* Margin-top iniziale */
         }
@@ -578,9 +575,14 @@
     <!-- Barra di navigazione principale -->
     <nav class="navbar navbar-expand-lg bg-custom fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand bb ll" href="#">
-                Apocalypse Vagina
-            </a>
+            <a class="navbar-brand" href="#">
+                <img src="img/loghi/logo_bianco.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+              </a>
+              
+              <a class="navbar-brand bb ll" href="#">
+                  Apocalypse Vagina
+                </a>
+              
         </div>
     </nav>
 
