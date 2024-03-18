@@ -318,14 +318,14 @@
         /* Altezza ridotta e margin-top quando avviene lo scrolling e lo sfondo diventa #a6ff00 */
         .navbar.scrolled,
         .navbar-secondary.scrolled {
-            height: 50px;
+            height: 35px;
             /* Altezza ridotta */
             margin-top: 0px;
             /* Regola questo valore in base alle tue esigenze */
         }
 
         .navbar-secondary.scrolled {
-            margin-top: -20px;
+            margin-top: -35px;
         }
 
         .marg {
@@ -925,7 +925,7 @@
             var navbar = document.querySelector(".navbar");
 
             window.addEventListener("scroll", function () {
-                if (window.scrollY > 180) {
+                if (window.scrollY > 50) {
                     navbar.classList.add("scrolled");
                 } else {
                     navbar.classList.remove("scrolled");
@@ -940,7 +940,7 @@
             var navbarSecondary = document.querySelector(".navbar-secondary");
 
             window.addEventListener("scroll", function () {
-                if (window.scrollY > 180) {
+                if (window.scrollY > 50) {
                     navbarSecondary.classList.add("scrolled");
                 } else {
                     navbarSecondary.classList.remove("scrolled");
