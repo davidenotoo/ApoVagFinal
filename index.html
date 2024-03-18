@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Apopcalypse Vagina</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- favicon -->
+    <link rel="icon" href="img/icon/favicon3.ico">
+
+    <!-- Manifest per PWA -->
+    <link rel="manifest" href="manifest.json">
+
+
+
+    <style>
+        /* import del font */
+        @font-face {
+            font-family: 'MiedingerW01-Bold';
+            src: url(fonts/font.woff) format('woff');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        body {
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #bfbfbf;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        .ll {
+            cursor: default;
+        }
+
+        .ll:hover {
+            color: inherit;
+        }
+
+        .ll:visited {
+            color: inherit;
+        }
+
+        .bg-custom {
+            background-color: #000;
+            font-family: 'MiedingerW01-Bold', sans-serif !important;
+            color: white;
+            transition: background-color 0.5s ease;
+            opacity: 1;
+        }
+
+        .bg-custom.scrolled {
+            background-color: #a6ff00;
+            opacity: 0.8;
+        }
+
+        .video {
+            padding-top: 70px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container {
+            width: 100%;
+            height: 70px;
+        }
+
+        .scorrimento {
+            text-align: center;
+            font-family: 'MiedingerW01-Bold', sans-serif !important;
+            color: white;
+            font-size: 40px;
+
+        }
+
+        .card {
+            background-color: #1b1f22;
+            color: #dee2e6;
+            margin: 10px;
+            padding: 2px;
+        }
+
+        .gradient2 {
+            background: linear-gradient()
+        }
+
+        /* Stile della sezione del mini player Spotify */
+        #mini-player-section {
+            text-align: center;
+            padding: 20px;
+            padding-left: 40vw;
+            padding-right: 40vw;
+        }
+
+        #mini-player-section #spotify-player {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #spotify-player {
+            margin-top: 10vh;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            width: 100%;
+        }
+
+        .carousel-indicators {
+            color: #a6ff00;
+        }
+
+        /* PC */
+        @media (min-width: 768px) {
+            .navbar-brand img {
+                width: 60px;
+                height: 48px;
+            }
+
+            .bb {
+                font-size: 40px;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                color: white;
+                padding-top: 15px;
+            }
+
+            .video {
+                padding-top: 110px;
+            }
+
+            .bb:hover {
+                cursor: default;
+            }
+
+            .navbar-secondary {
+                margin-top: 26px;
+                border: none;
+                text-align: center;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .phone-version {
+                display: none;
+            }
+
+        }
+
+
+        /* SMARTPHONE */
+        @media (max-width: 767px) {
+
+            .bb {
+                font-size: 18px;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                color: white;
+            }
+
+            .cc {
+                font-size: 30px;
+            }
+
+            .navbar-secondary {
+                margin-top: -17px;
+            }
+
+            .video {
+                padding-top: 20vh;
+                padding-bottom: 10px;
+            }
+
+            /* hide PC version on smaller screens */
+            .pc-version {
+                display: none;
+            }
+
+            .parole .word {
+                margin-right: 0;
+                margin-bottom: 5px;
+                /* Aggiungi spazio tra le parole su dispositivi mobili */
+            }
+
+            .parole h5 {
+                font-size: 8.5px;
+                /* Riduci la dimensione del testo su dispositivi mobili */
+            }
+
+            .hide {
+                display: none;
+            }
+        }
+
+        #mini-player-section {
+            margin: 0px;
+            /* Puoi regolare questo valore in base alle tue esigenze */
+        }
+
+        #spotify-player {
+            border-radius: 12px;
+            width: 100%;
+            height: 200px;
+            /* Puoi regolare questo valore in base alle tue esigenze */
+        }
+
+
+        .logo-color {
+            color: white;
+            /* Colore del testo iniziale */
+        }
+
+        .bg-scroll {
+            background-color: #9dff00 !important;
+            color: #000;
+            /* Colore dello sfondo durante lo scrolling */
+        }
+
+        .navbar-secondary {
+            background-color: #000;
+            font-family: 'MiedingerW01-Bold', sans-serif !important;
+            color: white;
+            transition: background-color 0.5s ease;
+            opacity: 1;
+            position: fixed;
+            top: 70px;
+            /* Altezza della barra di navigazione principale */
+            width: 100%;
+            z-index: 1000;
+            /* Assicura che la nuova barra sia sopra la barra principale */
+        }
+
+        .navbar-secondary.scrolled {
+            background-color: #a6ff00;
+            opacity: 0.8;
+        }
+
+        /* Stili per i pulsanti della nuova barra di navigazione */
+        .navbar-secondary .btn-primary {
+            background-color: #000;
+            color: white;
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar-secondary.scrolled .btn-primary {
+            background-color: #a6ff00;
+        }
+
+        /* Stili per i pulsanti della nuova barra di navigazione */
+        .navbar-secondary .btn-primary {
+            background-color: #000;
+            color: white;
+            transition: background-color 0.5s ease;
+            border: none;
+            /* Rimuovi il bordo */
+        }
+
+        .navbar-secondary.scrolled .btn-primary {
+            background-color: #a6ff00;
+        }
+
+        /* Stili per la stringa nella barra di navigazione principale e nella nuova barra di navigazione */
+        .navbar .navbar-brand,
+        .navbar-secondary .navbar-brand {
+            color: white;
+            /* Colore iniziale del testo */
+            transition: color 0.5s ease;
+            /* Aggiunto effetto di transizione */
+        }
+
+        /* Cambiamento del colore del testo quando avviene lo scrolling */
+        .navbar.scrolled .navbar-brand,
+        .navbar-secondary.scrolled .navbar-brand {
+            color: #000 !important;
+            /* Colore finale del testo */
+        }
+
+
+        /* Stili per la barra di navigazione principale e la nuova barra di navigazione */
+        .navbar,
+        .navbar-secondary {
+            transition: height 0.5s ease, margin-top 0.5s ease;
+            /* Aggiunta transizione per l'altezza e margin-top */
+        }
+
+        /* Altezza iniziale della barra di navigazione principale e della nuova barra di navigazione */
+        .navbar,
+        .navbar-secondary {
+            height: 70px;
+            margin-top: 0px;
+            /* Margin-top iniziale */
+        }
+
+        /* Altezza ridotta e margin-top quando avviene lo scrolling e lo sfondo diventa #a6ff00 */
+        .navbar.scrolled,
+        .navbar-secondary.scrolled {
+            height: 50px;
+            /* Altezza ridotta */
+            margin-top: 0px;
+            /* Regola questo valore in base alle tue esigenze */
+        }
+
+        .navbar-secondary.scrolled {
+            margin-top: -20px;
+        }
+
+        .marg {
+            margin-bottom: 50vh;
+        }
+
+        /* SEZIONE CARD */
+        #cardOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+
+            width: 300px;
+            /* Personalizza la larghezza della card secondo necessità */
+            background: #1b1f22;
+            color: #dee2e6;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: inherit;
+            /* Utilizza il colore del testo definito per il contenitore padre */
+            text-decoration: none;
+            /* Rimuove la sottolineatura del link */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: bold;
+        }
+
+        .link img {
+            width: 30px;
+            /* Personalizza la larghezza del logo del link secondo necessità */
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .btn-custom {
+            background-color: #a6ff00;
+            border-color: #a6ff00;
+            color: black;
+            margin-right: 30vw;
+            margin-left: 30vw;
+            margin-bottom: 10vh;
+            font-family: 'MiedingerW01-Bold';
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .btn-custom:hover {
+            background-color: #87cc00;
+            /* Cambia colore durante il passaggio del mouse */
+            border-color: #87cc00;
+            color: white;
+            /* Modifica il colore del testo secondo necessità */
+        }
+
+        .cent {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .link a {
+            color: inherit;
+            /* Utilizza il colore del testo definito per il contenitore padre */
+            text-decoration: none;
+            /* Rimuove la sottolineatura del link */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: bold;
+        }
+
+        .custom-button {
+            background-color: #ffffff;
+            /* Colore di sfondo bianco */
+            border: 1px solid #cccccc;
+            /* Bordo grigio */
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            /* Spaziatura interna */
+            margin: 5px;
+            /* Margine esterno */
+            cursor: pointer;
+            /* Cambia il cursore al passaggio del mouse */
+            border-radius: 8px;
+        }
+
+        /* X CLOSE */
+        .custom-close {
+            cursor: pointer;
+            position: relative;
+            width: 30px;
+            height: 30px;
+        }
+
+        .circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .x-mark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 2px;
+            background-color: red;
+        }
+
+        .line1 {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            transform: rotate(45deg);
+        }
+
+        .line2 {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            transform: rotate(-45deg);
+        }
+
+        /* MINI PLAYER */
+        .miniplayer {
+            color: #ffffff;
+            text-decoration: solid;
+        }
+
+        .card {
+            max-width: 100%;
+        }
+
+        .card-title {
+            font-family: 'MiedingerW01-Bold', sans-serif !important;
+        }
+
+        .card-body {
+            text-align: center;
+            /* Se vuoi centrare il testo nella card-body */
+        }
+
+        audio {
+            max-width: 100%;
+            /* Impedisce al tag audio di superare la larghezza della card */
+        }
+
+        audio::-webkit-media-controls-time-remaining {
+            display: none;
+            /* Nasconde il tempo di avanzamento in Chrome e Safari */
+        }
+
+        audio::-moz-media-controls-time-remaining {
+            display: none;
+            /* Nasconde il tempo di avanzamento in Firefox */
+        }
+
+        audio::-ms-media-controls-time-remaining {
+            display: none;
+            /* Nasconde il tempo di avanzamento in Microsoft Edge */
+        }
+
+        .testo1,
+        .testo2 {
+            color: #bfbfbf;
+            margin-left: 25%;
+            margin-right: 25%;
+            font-size: large;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .testo1 {
+            padding-top: 10vh;
+        }
+
+        .testo2 {
+            margin-top: 5vh;
+            margin-bottom: 10vh;
+        }
+
+        .font {
+            color: #ffffff;
+            font-weight: normal;
+            font-family: 'MiedingerW01-Bold', sans-serif !important;
+        }
+
+        .parole {
+            text-align: center;
+            /* Centra il testo all'interno del blocco */
+            padding: 0 10px;
+            /* Aggiunge padding ai lati del blocco */
+            letter-spacing: 4px;
+            font-weight: lighter;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: #ffffff;
+            font-weight: normal;
+
+        }
+
+        .parole h5 {
+            white-space: nowrap;
+            /* Impedisce alle parole di andare a capo */
+            overflow: hidden;
+            /* Nasconde le parole che non entrano nello spazio disponibile */
+            text-overflow: ellipsis;
+            /* Aggiunge i puntini di sospensione se il testo è troncato */
+        }
+
+        /* FOOTER */
+        footer {
+            margin-bottom: 2vh;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Barra di navigazione principale -->
+    <nav class="navbar navbar-expand-lg bg-custom fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand bb ll" href="#">
+                Apocalypse Vagina
+            </a>
+        </div>
+    </nav>
+
+    <!-- Nuova barra di navigazione -->
+    <nav class="navbar navbar-expand-lg navbar-secondary">
+        <!-- Aggiungi i tuoi bottoni qui -->
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary" onclick="window.location.href='#sezione1'">music</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='#sezione2'">dates</button>
+                <!-- <button type="button" class="btn btn-primary">contacts</button> -->
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- VIDEO -->
+    <video src="video/videoBanner.mp4" class="video" controls autoplay muted playsinline loop preload="auto"></video>
+
+
+    <div class="parole cent">
+        <h5>LOVE DESPAIR CRY RUN DESTROY. JUST BREATH.</h5>
+    </div>
+
+    <!-- FOTO 1 e 2 -->
+    <img src="img/photo/first.JPG" class="img-fluid" alt="img6">
+    <img src="img/photo/7.JPG" class="img-fluid" alt="img7">
+
+    <!-- TESTO1 -->
+    <div class="testo1 ">
+        <p>
+            Apocalyse Vagina music is a fusion of analog synth and computer music, inspired by Jungle, Techno, Future
+            Bass, Dark Synth, and Ambient.
+            <br><br>
+
+            Our live performance, composed by analog synthesizers, drumset and controllers, transports listeners to a
+            dystopian dimension though deep harmonics, contrasteby the rhythmic foundations that exude
+            energy and confident.
+            <br><br><p></p>
+        </p>
+        </p>
+    </div>
+
+    <!-- TESTO2 -->
+    <div class="testo2 ">
+        <p>
+            Apocalypse Vagina is not only about music.
+
+            <br><br>
+            It's about the emotions of our fragile generation, marked by uncertainty, yet unbroken and capable of
+            rebirth. <br>
+            We are in connection with all the souls out there who have experienced a personal apocalypse. <br>
+            We want to inject new energy to emerge from this, as life is a place where one can always be born again.
+        </p>
+    </div>
+
+    <section id="sezione1"></section>
+    <!-- MINIPLAYER SNIPPET VERSIONE PC -->
+    <div class="card mb-3 d-md-block w-50 mx-auto pc-version" style="background-color: #2e2e2e;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="img/loghi/logo_bianco.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">apocalypse vagina</h5>
+                    <p class="card-text">Wake up and run (album snippet)</p>
+                    <br><br>
+                    <audio controls>
+                        <source src="music/albumSnippet.mp3" type="audio/mp3">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MINIPLAYER SNIPPET VERSIONE PHONE -->
+    <div class="card mb-3 d-md-none w-75 mx-auto phone-version" style="background-color: #2e2e2e;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="img/loghi/logo_bianco.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <!-- <h5 class="card-title">apocalypse vagina</h5>
+                    <p class="card-text">Wake up and run (album snippet)</p>
+                    <br><br> -->
+                    <audio controls>
+                        <source src="music/albumSnippet.mp3" type="audio/mp3">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/3INLtncWi2teqXPMQ1GzQd?utm_source=generator&theme=0" width="100%"
+        height="352" frameBorder="0" allowfullscreen="d-md-none"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
+
+
+    <!-- player di SPOTIFY -->
+    <div id="mini-player-section music" class="embed-responsive embed-responsive-16by9">
+        <iframe id="spotify-player"
+            src="https://open.spotify.com/embed/album/1Kvnyu1qqE80Dik6rB3m7X?utm_source=generator&theme=0"
+            class="embed-responsive-item" frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+
+
+    <!-- BUTTON E LINK MUSIC -->
+
+    <button type="button" class="btn btn-custom px-10vh" data-toggle="modal" data-target="#cardModal">OTHER
+        PLAYERS</button>
+    <!-- Modal -->
+    <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cardModalLabel">Out Now >> PHONK
+
+                    </h5>
+                    <div class="custom-close" data-dismiss="modal" aria-label="Close">
+                        <div class="circle"></div>
+                        <div class="x-mark">
+                            <span class="line1"></span>
+                            <span class="line2"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="link">Listen on</div>
+
+
+                    <!-- Link Spotify -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://open.spotify.com/intl-it/track/3INLtncWi2teqXPMQ1GzQd?si=f3d7e72c544f4b15', '_blank')">
+                        <img src="img/icon/spotify.png" alt="Logo Spotify">
+                        <span>Spotify</span>
+                    </div>
+
+                    <!-- Link Amazon Music -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://music.amazon.com/albums/B0CC5QY8JD?marketplaceId=APJ6JRA9NG5V4&musicTerritory=IT&ref=dm_sh_Laz8jJMR3KngLaUnP72T1zV8E&trackAsin=B0CC5NL2L8', '_blank')">
+                        <img src="img/icon/amazonM.png" alt="Logo Amazon Music">
+                        <span>Amazon Music</span>
+                    </div>
+
+                    <!-- Link Youtube Music -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://music.youtube.com/watch?v=A-1YkSiZW1o&si=jWJLWxl1TAGvGDn0', '_blank')">
+                        <img src="img/icon/youtubeM.png" alt="Logo YouTube Music">
+                        <span>YouTube Music</span>
+                    </div>
+
+                    <!-- Esempio con Deezer -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://deezer.page.link/HGynRoqPY1G7rXDG7', '_blank')">
+                        <img src="img/icon/deezer.png" alt="Logo Deezer">
+                        <span>Deezer</span>
+                    </div>
+
+                    <!-- Esempio con YouTube -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://youtu.be/A-1YkSiZW1o?si=Y3zUCYEZ3hCLpPIV', '_blank')">
+                        <img src="img/icon/youtube.png" alt="Logo YouTube">
+                        <span>YouTube</span>
+                    </div>
+
+                    <!-- Esempio con TIDAL -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://listen.tidal.com/album/305410028/track/305410030', '_blank')">
+                        <img src="img/icon/tidal.png" alt="Logo TIDAL">
+                        <span>TIDAL</span>
+                    </div>
+
+                    <!-- Esempio con SoundCloud -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://soundcloud.com/apocalypsevagina/phonk?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing', '_blank')">
+                        <img src="img/icon/soundcloud.png" alt="Logo SoundCloud">
+                        <span>SoundCloud</span>
+                    </div>
+
+                    <!-- Esempio con Napster -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://play.napster.com/album/alb.4171689674042332?ocode=social_user&pcode=social_user&cpath=Link&rsrc=video', '_blank')">
+                        <img src="img/icon/napster.png" alt="Logo Napster">
+                        <span>Napster</span>
+                    </div>
+
+                    <!-- Esempio con Anghami -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://open.anghami.com/wPTKdLdNlGb', '_blank')">
+                        <img src="img/icon/anghami.png" alt="Logo Anghami">
+                        <span>Anghami</span>
+                    </div>
+
+                    <!-- Esempio con Boomplay -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://www.boomplay.com/songs/133920394', '_blank')">
+                        <img src="img/icon/boomplay.png" alt="Logo Boomplay">
+                        <span>Boomplay</span>
+                    </div>
+
+                    <!-- Esempio con Pandora -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://www.pandora.com/TR:99964053', '_blank')">
+                        <img src="img/icon/pandora.png" alt="Logo Pandora">
+                        <span>Pandora</span>
+                    </div>
+
+                    <!-- Esempio con Amazon -->
+                    <div class="link custom-button"
+                        onclick="window.open('https://www.amazon.com/dp/B0CC5PM9YS', '_blank')">
+                        <img src="img/icon/amazonS.png" alt="Logo Amazon">
+                        <span>Amazon</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- DATES EVENTI -->
+    <h1 class="cent font"> Dates</h1>
+    <section id="sezione2" class="text-white py-5 marg">
+        <div class="container text-center">
+            <!-- Evento 1 -->
+            <div class="row mb-4">
+                <div class="col">
+                    <h2>23 LUG 2023</h2>
+                    <div class="border-bottom pb-3">
+                        <h4>NUVALA FEST</h4>
+                        <p>Masseria Cimadomo, Apulia, Italy</p>
+                        <a href="https://www.instagram.com/nuvala_evasioniurbane/reels/?ref=tw_i&hl=de
+                        " target="_blank" class="text-white">INFO</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evento 2 -->
+            <div class="row mb-4">
+                <div class="col">
+                    <h2>01 LUG 2023</h2>
+                    <div class="border-bottom pb-3">
+                        <h4>MARE FESTIVAL</h4>
+                        <p>Cretto di Burri, Sicily, Italy</p>
+                        <a href="https://www.instagram.com/reel/CtrBKihISVw/
+                        " target="_blank" class="text-white">INFO</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Evento 3 -->
+            <!-- <div class="row mb-4">
+                <div class="col">
+                    <h2>Coming Soon</h2>
+                    <div class="border-bottom pb-3">
+                        <h4>???</h4>
+                        <p>?</p>
+                        <a href="#" class="text-white">Stay Tuned</a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- IMMAGINI -->
+    <img src="img/photo/1.JPG" class="img-fluid" alt="img1">
+    <img src="img/photo/2.JPG" class="img-fluid" alt="img2">
+    <img src="img/photo/3.JPG" class="img-fluid" alt="img3">
+    <img src="img/photo/4.JPG" class="img-fluid" alt="img4">
+    <img src="img/photo/5.JPG" class="img-fluid" alt="img5">
+
+
+
+    <!-- FOOTER -->
+    <footer class="fixed-bottom">
+        <div class="container-fluid">
+            <div class="row justify-content-between">
+                <div class="col-4 text-center">
+                    <a class="nav-link" href="mailto:apocalypsevagine@gmail.com"><img src="img/icon/iconMail.png"
+                            alt="apocalypsevagine@gmail.com"></a>
+                    <p class="hide" style="color: white;">apocalypsevagina@gmail.com</p>
+                </div>
+                <div class="col-4 text-center">
+                    <a class="nav-link" href="" rel="nofollow" target="_blank" onclick="return false;"
+                        style="cursor: default; color: #ffffff;"><br class="hide">© 2024: ApocalypseVagina</a>
+                </div>
+                <div class="col-4 text-center">
+                    <a class="nav-link"
+                        href="https://www.instagram.com/apocalypsevagina?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                        target="_blank"><img src="img/icon/iconIG.png" alt="InstagramLink"></a>
+                    <p class="hide" style="color: white;">@apocalypsevagina</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var navbar = document.querySelector(".navbar");
+
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 180) {
+                    navbar.classList.add("scrolled");
+                } else {
+                    navbar.classList.remove("scrolled");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var navbar = document.querySelector(".navbar");
+            var navbarSecondary = document.querySelector(".navbar-secondary");
+
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 180) {
+                    navbarSecondary.classList.add("scrolled");
+                } else {
+                    navbarSecondary.classList.remove("scrolled");
+                }
+            });
+        });
+    </script>
+
+    <script>document.addEventListener("DOMContentLoaded", function () {
+            var cardOverlay = document.getElementById("cardOverlay");
+            var openCardButton = document.getElementById("openCardButton");
+
+            openCardButton.addEventListener("click", function () {
+                cardOverlay.style.display = "flex";
+            });
+
+            cardOverlay.addEventListener("click", function (event) {
+                if (event.target === cardOverlay) {
+                    cardOverlay.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
